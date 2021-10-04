@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Contact
+from .models import ContactModel
 
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email')
+    list_filter = ('name',)
 
 
-admin.site.register(Contact, ContactAdmin)
+admin.site.register(ContactModel, ContactAdmin)

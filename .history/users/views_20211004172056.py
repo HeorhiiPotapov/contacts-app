@@ -9,11 +9,13 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from .forms import (CustomUserCreationForm)
+from .forms import (CustomUserCreationForm,
+                    UserEditForm)
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Profile, Phone
 
 User = get_user_model()
 

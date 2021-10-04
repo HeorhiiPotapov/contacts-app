@@ -7,8 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('contacts/', include('contacts.urls', namespace='contacts')),
     path('users/', include('users.urls', namespace='users')),
-    path('api/', include('contacts.api.urls', namespace='contacts__api')),
-    path('auth-api/', include('users.api.urls', namespace='users__api'))
+    path('api/', include('contacts.api.urls', namespace='contacts__api'))
 ]
 
 if settings.DEBUG:

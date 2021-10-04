@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm, CustomUserEditForm
 from .models import CustomUser
 
+User = get_user_model()
+
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -23,16 +25,13 @@ class CustomUserAdmin(UserAdmin):
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
 
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email',
-                       'password1',
-                       'password2',
-                       'is_staff',
-                       'is_active')}
-         ),
-    )
+    add_fieldsets = ((None, {
+        'classes': ('wide',),
+        'fields': ('email',
+                   'password1',
+                   'password2',
+                   'is_staff',
+                   'is_active')}))
     search_fields = ('email',)
     ordering = ('email',)
     inlines = []

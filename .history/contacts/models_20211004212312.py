@@ -7,7 +7,7 @@ class ContactModelManager(models.Model):
         return qs
 
 
-class Contact(models.Model):
+class ContactModel(models.Model):
     id = models.BigIntegerField(primary_key=True,
                                 unique=True)
     name = models.CharField(max_length=255, null=True)

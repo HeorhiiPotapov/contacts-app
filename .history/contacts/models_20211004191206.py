@@ -9,7 +9,8 @@ class ContactModelManager(models.Model):
 
 class Contact(models.Model):
     id = models.BigIntegerField(primary_key=True,
-                                unique=True)
+                                unique=True,
+                                null=True)
     name = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255, null=True)
 
