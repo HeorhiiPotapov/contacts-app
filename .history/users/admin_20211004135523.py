@@ -6,6 +6,15 @@ from .models import CustomUser
 
 User = get_user_model()
 
+admin.site.register(Phone)
+
+
+class ProfileInlines(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    fields = ['logo', 'brand', 'city',
+              'address', 'subscribed_to']
+
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -37,4 +46,4 @@ class CustomUserAdmin(UserAdmin):
     )
     search_fields = ('email',)
     ordering = ('email',)
-    inlines = []
+    inlines = [ProfileInlines, ]

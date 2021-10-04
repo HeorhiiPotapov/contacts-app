@@ -2,9 +2,18 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm, CustomUserEditForm
-from .models import CustomUser
+from .models import CustomUser, Profile, Phone
 
 User = get_user_model()
+
+admin.site.register(Phone)
+
+
+class ProfileInlines(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    fields = ['logo', 'brand', 'city',
+              'address', 'subscribed_to']
 
 
 @admin.register(CustomUser)
@@ -37,4 +46,4 @@ class CustomUserAdmin(UserAdmin):
     )
     search_fields = ('email',)
     ordering = ('email',)
-    inlines = []
+    inlines = [ProfileInlines, ]
