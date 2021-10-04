@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {%block content %}
+<table class="table caption-top">
+  <caption>
+    My Contacts
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><h2>MASHA</h2></th>
+      <th scope="col">Lera Mama</th>
+      <th scope="col">LorA THE DOG</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in Contax %}
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

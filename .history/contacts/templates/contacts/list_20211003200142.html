@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {%block content %}
+<table class="table caption-top">
+  <caption>
+    My Contacts
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><h2>MASHA</h2></th>
+      <th scope="col">Lera Mama</th>
+      <th scope="col">LorA THE DOG</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+      <th scope="row">{{contact.id}}</th>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email}}</td>
+      <td>
+        <input
+          type="checkbox"
+          name="contacts-table-checkbox"
+          id="{{contact.id}}"
+        />
+      </td>
+
+      <td>
+        <form action="{% url 'contacts:delete' contact.id %}" method="post">
+          <input type="submit" class="badge bg-danger" value="Danger" />
+        </form>
+
+        <script>
+          const form = document.getElementById('#form')
+          console.log(form)
+        </script>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

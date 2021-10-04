@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {%block content %}
+<table class="table caption-top">
+  <caption>
+    <h3>My Contacts</h3>
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><h4>NAME</h4></th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">OPTIONS</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+      <th scope="row">{{contact.id}}</th>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email}}</td>
+
+
+      <td>
+        <form
+          name="delete_form_dutton"
+          action="{% url 'contacts:delete' contact.id %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <input type="submit" name="method" value="delete" />
+        </form>
+
+        <script>
+          const form = document.getElementById('#form')
+          console.log(form)
+        </script>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<span>
+  <button
+    type="button"
+    class="btn btn-primary align-self-center text-center"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    <h3 class="p-0 m-0">+</h3>
+  </button>
+</span>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+          <form action={% url 'contacts:create' %} method='POST'>
+            <div class="mb-3">
+              <label for="name_field"
+                class="col-form-label">
+                  name:
+                </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name_field" {% if request.data %}{{ request.data}}{% endif %}/>
+            </div>
+            <div class="">
+              <label 
+                for="email-field" 
+                class="col-form-label">
+                  email:
+              </label>
+              <textarea class="form-control" id="email-field"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Save Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

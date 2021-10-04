@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {%block content %}
+<table class="table caption-top">
+  <caption>
+    My Contacts
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><h2>MASHA</h2></th>
+      <th scope="col">Lera Mama</th>
+      <th scope="col">LorA THE DOG</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+      <th scope="row">{{contact.id}}</th>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email}}</td>
+      <td>
+        <input
+          type="checkbox"
+          name="contacts-table-checkbox"
+          id="{{contact.id}}"
+        />
+      </td>
+
+      <td>
+        <form
+          name="delete_form_dutton"
+          action="{% url 'contacts:delete' contact.id %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <input type="submit" name="method" value="delete" />
+        </form>
+
+        <script>
+          const form = document.getElementById('#form')
+          console.log(form)
+        </script>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+class="">
+  <button
+    type="button"
+    class="btn btn-primary align-self-center text-center"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    <h3 class='p-0 m-0'>+</h3>
+  </button>
+</span>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {% comment %} <div class="modal-header"> {% endcomment %}
+        {% comment %} <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> {% endcomment %}
+        {% comment %} <button {% endcomment %}
+          {% comment %} type="button" {% endcomment %}
+          {% comment %} class="btn-close" {% endcomment %}
+          {% comment %} data-bs-dismiss="modal" {% endcomment %}
+          {% comment %} aria-label="Close" {% endcomment %}
+        {% comment %} ></button> {% endcomment %}
+      
+      {% comment %} <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div> {% endcomment %}
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="name_field" class="col-form-label">name:</label>
+            <input type="text" class="form-control" id="name_field" />
+          </div>
+          <div class="mb-3">
+            <label for="message-field" class="col-form-label">email:</label>
+            <textarea class="form-control" id="message-field"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary">Save Contact</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
